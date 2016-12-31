@@ -20,10 +20,15 @@ public class BaseThreadMain {
 
         Thread monitorFolderThread = new Thread(new MonitorFolderTask_Old(notePadThread));
         monitorFolderThread.start();
+        System.out.println("before join statement" + System.currentTimeMillis()/1000);
 
-        while(notePadThread.isAlive()) {
+        notePadThread.join(1000*60);
+
+        System.out.println("after join statement" + System.currentTimeMillis()/1000);
+
+       /* while(notePadThread.isAlive()) {
             Thread.sleep(3000);
-        }
+        }*/
         System.out.println("Main Thread ends");
     }
 }
